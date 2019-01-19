@@ -21,14 +21,24 @@ var cards = [
 }
 ];
 var cardsInPlay = [];
+var replayLink = function() {
+	var newLink = document.createElement('a');
+	var newLinkText = document.createTextNode('Replay?');
+	newLink.appendChild(newLinkText);
+	newLink.setAttribute('id', 'reset');
+	newLink.setAttribute('href', "file:///C:/Users/samjk/fundamentals/wdi-fundamentals-memorygame/memory_game/index.html")
+	document.getElementById('game-board').appendChild(newLink);
+};
 var checkForMatch = function(elem) {
 	var index = elem.getAttribute('data-id');
 	elem.setAttribute('src', cards[index].cardImage);
 	if (cardsInPlay.length === 2) {
 		if (cardsInPlay[0] === cardsInPlay[1]) {
 			alert('You found a match!');
+			replayLink();
 		} else {
 			alert("Sorry, try again.");
+			replayLink();
 		}
 	} else {
 	console.log('pick another card');
@@ -52,9 +62,13 @@ var createBoard = function() {
 		document.getElementById('game-board').appendChild(cardElement);
 	};
 };
-
+var scrollWin = function(x, y) {
+	window.scrollTo(x, y);
+};
 createBoard();
 
-
-
-
+window.onload = function() {
+ setTimeout (function () {
+  scrollTo(0,0);
+ }, 10);
+}

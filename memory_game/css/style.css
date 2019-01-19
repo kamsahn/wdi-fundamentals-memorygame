@@ -19,6 +19,22 @@ h1 {
 	font-size: 45px;
 	margin: 0;
 }
+button {
+	font-family: "Raleway", sans-serif;
+	text-decoration: none;
+	text-transform: uppercase;
+	background: none;
+	letter-spacing: 1px;
+	font-weight: 600;
+	font-size: 18px;
+	color: #F15B31;
+	margin: 0 20px;
+	border: none;
+	border-bottom: 2px solid transparent;
+}
+button:hover {
+	border-color: white;
+}
 a {
 	font-family: "Raleway", sans-serif;
 	text-decoration: none;
@@ -26,7 +42,6 @@ a {
 	font-weight: 600;
 	font-size: 18px;
 	color: #F15B31;
-	margin: 0 20px;
 	border-bottom: 2px solid transparent;
 }
 a:hover {
@@ -61,6 +76,10 @@ h1, h2, a {
 .lowerpar {
 	font-size: 14px;
 }
+#profile {
+	border-radius: 50%;
+	margin-bottom: 5px;
+}
 footer {
 	text-transform: uppercase;
 	padding: 0 20px;
@@ -89,4 +108,22 @@ font-size: 0;
 .name {
 	color: #F15B31;
 	font-weight: 700;
+	margin-left: 7px;
+}
+.hearts {
+	color: rgb(255,50,50);
+}
+#botlink {
+	margin-left: 7px;
+}
+#botlink:hover {
+	border-color: #0D2C40;
+}
+#reset {
+	display: block;
+	margin: 0 auto;
+	border: none;
+}
+#reset:hover {
+	border-color: #0D2C40;
 }
