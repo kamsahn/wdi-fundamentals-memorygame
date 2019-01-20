@@ -21,6 +21,15 @@ var cards = [
 }
 ];
 var cardsInPlay = [];
+var matchMsg = 'You found a match!'
+var noMatchMsg = 'Sorry, try again.'
+var endDisplay = function(msg) {
+	var endBox = document.createElement('div');
+	var endBoxText = document.createTextNode(msg);
+	endBox.appendChild(endBoxText);
+	endBox.setAttribute('id', 'test');
+	document.getElementById('game-board').appendChild(endBox);
+};
 var replayLink = function() {
 	var newLink = document.createElement('a');
 	var newLinkText = document.createTextNode('Replay?');
@@ -34,14 +43,14 @@ var checkForMatch = function(elem) {
 	elem.setAttribute('src', cards[index].cardImage);
 	if (cardsInPlay.length === 2) {
 		if (cardsInPlay[0] === cardsInPlay[1]) {
-			alert('You found a match!');
+			// alert('You found a match!');
+			endDisplay(matchMsg);
 			replayLink();
 		} else {
-			alert("Sorry, try again.");
+			// alert("Sorry, try again.");
+			endDisplay(noMatchMsg);
 			replayLink();
 		}
-	} else {
-	console.log('pick another card');
 	}
 };
 var flipCard = function() {
@@ -66,7 +75,6 @@ var scrollWin = function(x, y) {
 	window.scrollTo(x, y);
 };
 createBoard();
-
 window.onload = function() {
  setTimeout (function () {
   scrollTo(0,0);
