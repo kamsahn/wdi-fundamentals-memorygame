@@ -58,7 +58,8 @@ var checkForMatch = function(elem) {
 };
 var flipCard = function() {
 	var cardId = this.getAttribute('data-id');
-	if (this.getAttribute('flip') === "no" && cardsInPlay.length <= 2) {
+	if (this.getAttribute('flip') === "no" && cardsInPlay.length <= 2) { 
+	//want to change "no" to false and "yes" to true
 		console.log('A card has been flipped.')
 		cardsInPlay.push(cards[cardId].rank);
 		this.setAttribute('flip', "yes");
@@ -73,7 +74,7 @@ var createBoard = function() {
 		var cardElement = document.createElement('img');
 		cardElement.setAttribute('src', "images/back.png");
 		cardElement.setAttribute('data-id', i);
-		cardElement.setAttribute('flip', "no");
+		cardElement.setAttribute('flip', "no"); //change to false once solution has been identified
 		cardElement.addEventListener('click', flipCard);
 		document.getElementById('game-board').appendChild(cardElement);
 	};
