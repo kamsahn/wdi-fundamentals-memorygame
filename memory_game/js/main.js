@@ -30,13 +30,16 @@ var endDisplay = function(msg) {
 	endBox.setAttribute('id', 'test');
 	document.getElementById('game-board').appendChild(endBox);
 };
-var replayLink = function() {
-	var newLink = document.createElement('a');
-	var newLinkText = document.createTextNode('Replay?');
-	newLink.appendChild(newLinkText);
-	newLink.setAttribute('id', 'reset');
-	newLink.setAttribute('href', "file:///C:/Users/samjk/fundamentals/wdi-fundamentals-memorygame/memory_game/index.html")
-	document.getElementById('game-board').appendChild(newLink);
+var reloadPage = function() {
+	window.location.reload();
+};
+var replayButton = function() {
+	var newButton = document.createElement('button');
+	var newButtonText = document.createTextNode('Replay?');
+	newButton.appendChild(newButtonText);
+	newButton.setAttribute('id', 'reset');
+	newButton.addEventListener('click', reloadPage);
+	document.getElementById('game-board').appendChild(newButton);
 };
 var checkForMatch = function(elem) {
 	var index = elem.getAttribute('data-id');
@@ -45,28 +48,32 @@ var checkForMatch = function(elem) {
 		if (cardsInPlay[0] === cardsInPlay[1]) {
 			// alert('You found a match!');
 			endDisplay(matchMsg);
-			replayLink();
+			replayButton();
 		} else {
 			// alert("Sorry, try again.");
 			endDisplay(noMatchMsg);
-			replayLink();
+			replayButton();
 		}
 	}
 };
 var flipCard = function() {
 	var cardId = this.getAttribute('data-id');
-	console.log('A card has been flipped.')
-	cardsInPlay.push(cards[cardId].rank);
-	console.log('user flipped ' + cards[cardId].rank);
-	console.log(cards[cardId].cardImage);
-	console.log(cards[cardId].suit);
-	checkForMatch(this);
+	if (this.getAttribute('flip') === "no" && cardsInPlay.length <= 2) {
+		console.log('A card has been flipped.')
+		cardsInPlay.push(cards[cardId].rank);
+		this.setAttribute('flip', "yes");
+		console.log('user flipped ' + cards[cardId].rank);
+		console.log(cards[cardId].cardImage);
+		console.log(cards[cardId].suit);
+		checkForMatch(this);
+	}
 };
 var createBoard = function() {
 	for (var i = 0; i < cards.length; i++) {
 		var cardElement = document.createElement('img');
 		cardElement.setAttribute('src', "images/back.png");
 		cardElement.setAttribute('data-id', i);
+		cardElement.setAttribute('flip', "no");
 		cardElement.addEventListener('click', flipCard);
 		document.getElementById('game-board').appendChild(cardElement);
 	};
